@@ -1,2 +1,2 @@
-# pi-spotify
-A spotify client on the raspberry pi
+# Hapi-dash
+A hapi dashboard using reactjs
