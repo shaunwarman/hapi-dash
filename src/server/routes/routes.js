@@ -3,7 +3,7 @@ import { buildHandler, helloHandler } from '../lib/handlers';
 export const routes = {
     build: {
         method: 'GET',
-        path: '/{param*}',
+        path: '/{p*}',
         handler: {
             directory: {
                 path: 'build'
