@@ -1,12 +1,14 @@
-var gulp = require("gulp");
-var gutil = require("gulp-util");
-var webpack = require("webpack");
 var concat = require('gulp-concat');
 var del = require('del');
+var gulp = require("gulp");
+var gutil = require("gulp-util");
+var imagemin = require('gulp-imagemin');
+var webpack = require("webpack");
 
 
 var paths = {
-    css: 'client/css/*.css'
+    css: 'src/client/css/**/*.css',
+    images: 'src/client/images/**/*'
 };
 
 /**
@@ -58,6 +60,13 @@ gulp.task("webpack", function(callback) {
     });
 });
 
+// Imagemin images and ouput them in dist
+gulp.task('imagemin', ['clean'], function() {
+    gulp.src(paths.images)
+        .pipe(imagemin())
+        .pipe(gulp.dest('build/images/'));
+});
+
 /**
  * Concat css files to build directory with webpack bundle
  */
@@ -67,4 +76,4 @@ gulp.task('concat', function() {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('default', ['clean', 'webpack', 'concat']);
+gulp.task('default', ['clean', 'webpack', 'imagemin', 'concat']);
