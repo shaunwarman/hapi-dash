@@ -1,0 +1,56 @@
+{
+  "server": {
+    "debug": {
+      "log": ["debug"]
+    }
+  },
+  "connections": {
+    "web": {
+      "labels": ["web"],
+      "port": 8000
+    }
+  },
+  "plugins": {
+    "good": {
+      "register": "require:good",
+      "options": {
+        "reporters": [{
+          "reporter": "require:good-console",
+          "events": {
+            "log": ["error", "medium"]
+          },
+          "responsePayload": true
+        }]
+      },
+      "select": ["web"]
+    },
+    "yar": {
+      "cookieOptions": {
+        "password": "password123456789012345678901234567",
+        "isSecure": false
+      }
+    }
+  },
+  "routes": {
+    "build": {
+      "method": "GET",
+      "path": "/{p*}",
+      "handler": {
+        "directory": {
+          "path": "build"
+        }
+      }
+    },
+    "hello": {
+      "method": "GET",
+      "path": "/",
+      "handler": {
+        "module": "require:../src/server/lib/handlers",
+        "method": "helloHandler",
+        "arguments": [
+          "testArgument"
+        ]
+      }
+    }
+  }
+}
