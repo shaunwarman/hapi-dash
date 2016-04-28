@@ -11,6 +11,21 @@
   },
   "author": "Shaun Warman",
   "license": "ISC",
+  "dependencies": {
+    "good": "^6.6.0",
+    "good-console": "^5.3.1",
+    "handlebars": "^4.0.5",
+    "hapi": "^13.2.1",
+    "hapi-configure": "^3.2.0",
+    "history": "^2.1.0",
+    "inert": "^3.2.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-router": "^2.3.0",
+    "vision": "^4.0.1",
+    "wreck": "^7.1.0",
+    "yar": "^7.0.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.4.5",
     "babel-eslint": "^6.0.0",
@@ -27,20 +42,5 @@
     "gulp-imagemin": "^2.4.0",
     "gulp-util": "^3.0.7",
     "webpack": "^1.12.14"
-  },
-  "dependencies": {
-    "good": "^6.6.0",
-    "good-console": "^5.3.1",
-    "handlebars": "^4.0.5",
-    "hapi": "^13.2.1",
-    "hapi-configure": "^3.2.0",
-    "history": "^2.1.0",
-    "inert": "^3.2.0",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-router": "^2.3.0",
-    "vision": "^4.0.1",
-    "wreck": "^7.1.0",
-    "yar": "^7.0.0"
   }
 }
