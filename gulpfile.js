@@ -7,6 +7,7 @@ var webpack = require("webpack");
 
 
 var paths = {
+    config: 'config/config.json',
     css: 'src/client/css/**/*.css',
     images: 'src/client/images/**/*'
 };
@@ -15,7 +16,7 @@ var paths = {
  * Remove build directory
  */
 gulp.task('clean', function() {
-    return del(['build']);
+    return del(['build, dist']);
 });
 
 /**
