@@ -23,7 +23,7 @@ const init = async function () {
 
     console.log('Server running at', server.info.uri);
 
-        return server;
-    };
+    return server;
+};
 
-    init().catch((error) => console.error(error.stack));
+init().catch((error) => console.error(error.stack));
