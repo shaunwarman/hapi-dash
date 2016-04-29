@@ -35,6 +35,9 @@
         "web"
       ]
     },
+    "static": {
+      "register": "require:inert"
+    },
     "viewRendering": {
       "register": "require:vision"
     }
