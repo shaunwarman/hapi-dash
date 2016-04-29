@@ -1,5 +1,3 @@
-import { buildHandler, helloHandler } from '../lib/handlers';
-
 export const routes = {
     build: {
         method: 'GET',
@@ -13,6 +11,8 @@ export const routes = {
     hello: {
       method: 'GET',
       path: '/',
-      handler: helloHandler
+      handler: (request, reply) => {
+          return reply.view('hello', { title: 'Herro', message: 'How goes it!' });
+      }
     }
 };

@@ -1,38 +1,29 @@
-import Hapi from 'hapi';
-import Inert from 'inert';
-import Vision from 'vision';
+import Configure from 'hapi-configure';
+import Handlebars from 'handlebars';
+import Path from 'path';
 
-import { routes } from './routes/routes';
-import { plugins } from './plugins/plugins';
-import { viewOptions } from './plugins/options/view';
+import { routes } from '../server/routes/routes';
 
-// create a server with a host and port
-const server = new Hapi.Server();
-server.connection({
-    host: 'localhost',
-    port: 8000
-});
+const init = async function () {
+    const server = await Configure({ basedir: Path.join(__dirname, '../..', 'config') });
+    
+    server.views({
+        engines: { html: Handlebars },
+        relativeTo: __dirname,
+        path: '../client/views',
+        layout: 'master'
+    });
 
-// register plugins
-server.register([
-    Inert,
-    Vision,
-    plugins.cache,
-    plugins.logging
-], (err) => {
-    server.views(viewOptions);
-});
+    server.route([
+        routes.hello,
+        routes.build
+    ]);
 
-// add routes
-server.route([
-    routes.build,
-    routes.hello
-]);
+    await server.start();
 
-// start the server
-server.start((err) => {
-    if (err) {
-        throw err;
-    }
-    console.info('Server running at:', server.info.uri);
-});
+    console.log('Server running at', server.info.uri);
+
+        return server;
+    };
+
+    init().catch((error) => console.error(error.stack));
