@@ -43,12 +43,4 @@ gulp.task('concat-css', function() {
         .pipe(gulp.dest('build'));
 });
 
-/**
- * Concat view files to build directory with webpack bundle
- */
-gulp.task('concat-views', function() {
-    return gulp.src(paths.views)
-        .pipe(gulp.dest('dist/client/views/'));
-});
-
-gulp.task('default', ['clean', 'webpack', 'concat-css', 'concat-views']);
+gulp.task('default', ['clean', 'webpack', 'concat-css']);
