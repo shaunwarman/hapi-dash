@@ -2,27 +2,28 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    devtool: "source-map",
-    entry: {
-        javascript: ["./src/client/js/app"]
-    },
-    externals: {
-        "jquery": "jQuery"
-    },
+    devtool: 'inline-source-map',
+    entry: './src/client/js/app.js'
+    ,
     output: {
-        filename: "main.js",
-        path: __dirname + "/build"
+        path: path.join(__dirname, 'build'),
+        filename: 'main.js'
     },
+    // plugins: [
+    //     new webpack.optimize.OccurenceOrderPlugin(),
+    //     new webpack.HotModuleReplacementPlugin()
+    // ],
     module: {
         loaders: [
             {
-                test: /\.jsx$/,
+                test: /\.js$/,
+                loader: 'babel-loader',
                 exclude: /node_modules/,
-                loaders: ["babel-loader"]
+                include: __dirname
+                // query: {
+                //     presets: [ 'react-hmre' ]
+                // }
             }
         ]
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
     }
-};
+}
