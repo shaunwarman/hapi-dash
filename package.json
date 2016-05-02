@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --out-dir dist",
+    "build": "babel src --source-maps --out-dir dist",
     "lint": "eslint .",
     "start": "gulp default && npm run build && node dist/server/index.js"
   },
