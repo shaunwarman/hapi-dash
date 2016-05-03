@@ -1,0 +1,32 @@
+body {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #252830;
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: #1F2531;
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-default {
+    border-color: #000000;
+}
+
+.navbar-title {
+    font-size: 18px;
+}
+
+.navbar-nav > li > .active {
+    font-weight: 300;
+    color: #ffffff;
+}

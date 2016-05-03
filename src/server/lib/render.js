@@ -42,11 +42,11 @@ function renderFullPage(html, initialState) {
       <head>
         <title>Ops Dashboard</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
+        <link href="app.css" rel="stylesheet" />
       </head>
       <body>
-        <div class="container-fluid">
-            <div id="app">${html}</div>
-        </div>
+        <div id="app">${html}</div>
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)}
         </script>
