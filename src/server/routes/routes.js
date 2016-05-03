@@ -12,7 +12,7 @@ export const routes = {
       method: 'GET',
       path: '/',
       handler: (request, reply) => {
-          return reply.view('hello', { title: 'Herro', message: 'How goes it!' });
+          return reply.view('master', { title: 'Herro', message: 'How goes it!' });
       }
     }
 };
