@@ -1,7 +1,7 @@
 var concat = require('gulp-concat');
 var del = require('del');
 var gulp = require("gulp");
-var gutil = require("gulp-util");
+var runSequence = require('run-sequence');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config');
 
@@ -10,7 +10,7 @@ var paths = {
     config: 'config/config.json',
     css: 'src/client/css/**/*.css',
     images: 'src/client/images/**/*',
-    views: 'src/client/views/**/*'
+    views: 'src/client/views/*'
 };
 
 /**
@@ -23,15 +23,8 @@ gulp.task('clean', function() {
 /**
  * Run webpack config creating bundle in build directory
  */
-gulp.task("webpack", function(callback) {
-
-    webpack( webpackConfig , function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack", err);
-        gutil.log("[webpack]", stats.toString({
-            // output options
-        }));
-        callback();
-    });
+gulp.task("webpack", function() {
+    return webpack( webpackConfig )
 });
 
 /**
@@ -43,4 +36,14 @@ gulp.task('concat-css', function() {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('default', ['clean', 'webpack', 'concat-css']);
+/**
+ * Concat view files to build directory with webpack bundle
+ */
+gulp.task('concat-views', function() {
+    return gulp.src(paths.views)
+        .pipe(gulp.dest('dist/client/views'));
+});
+
+gulp.task('default', function (callback) {
+    runSequence('clean', 'concat-css', 'concat-views', 'webpack', callback);
+});
