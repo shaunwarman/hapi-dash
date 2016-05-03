@@ -28,4 +28,4 @@ const init = async function () {
     return server
 };
 
-init().catch((error) => console.error(error.stack));
+init().catch((error) => console.error(error.stack))
