@@ -1,6 +1,7 @@
 var concat = require('gulp-concat');
 var del = require('del');
 var gulp = require("gulp");
+var gutil = require("gulp-util");
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config');
@@ -23,8 +24,11 @@ gulp.task('clean', function() {
 /**
  * Run webpack config creating bundle in build directory
  */
-gulp.task("webpack", function() {
-    return webpack( webpackConfig )
+gulp.task("webpack", function(callback) {
+    webpack( webpackConfig , function(error) {
+        if (error) throw new gutil.PluginError("webpack", error);
+        return callback();
+    });
 });
 
 /**
@@ -36,14 +40,6 @@ gulp.task('concat-css', function() {
         .pipe(gulp.dest('build'));
 });
 
-/**
- * Concat view files to build directory with webpack bundle
- */
-gulp.task('concat-views', function() {
-    return gulp.src(paths.views)
-        .pipe(gulp.dest('dist/client/views'));
-});
-
 gulp.task('default', function (callback) {
-    runSequence('clean', 'concat-css', 'concat-views', 'webpack', callback);
+    runSequence('clean', 'webpack', 'concat-css', callback);
 });
