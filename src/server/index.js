@@ -14,8 +14,7 @@ const init = async function () {
                 path: 'build'
             }
         }
-    },
-    {
+    }, {
         method: 'GET',
         path: '/',
         handler: handleRender
